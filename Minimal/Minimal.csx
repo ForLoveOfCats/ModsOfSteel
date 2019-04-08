@@ -26,7 +26,7 @@ public class Minimal : Gamemode //Gamemode inherits Godot.Node
 	public override void _Ready() //Provided by Godot.Node
 	{
 		if(Net.Work.IsNetworkServer())
-			Net.SteelRpc(Scripting.Self, nameof(Scripting.RequestGmLoad), Name); //Load same gamemode on all connected clients
+			Net.SteelRpc(Scripting.Self, nameof(Scripting.RequestGmLoad), OwnName); //Load same gamemode on all connected clients
 
 		API.Gm = new CustomCommands(this);
 	}
@@ -35,7 +35,7 @@ public class Minimal : Gamemode //Gamemode inherits Godot.Node
 	public override void OnPlayerConnect(int Id)
 	{
 		if(Net.Work.IsNetworkServer())
-			Scripting.Self.RpcId(Id, nameof(Scripting.RequestGmLoad), Name); //Load same gamemode on newly connected client
+			Scripting.Self.RpcId(Id, nameof(Scripting.RequestGmLoad), OwnName); //Load same gamemode on newly connected client
 	}
 
 
