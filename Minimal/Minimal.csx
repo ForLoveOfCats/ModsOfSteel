@@ -13,9 +13,12 @@ private class CustomCommands
 	}
 
 
-	public void Test() //Called in the console with Gm.Test()
+	//Custom commands cannot return void due to an API limitation with Roslyn
+	//A good workaround is to return bool indicating success/failure
+	public bool Test() //Called in the console with Gm.Test()
 	{
 		Console.Print("Custom commands work!");
+		return true;
 	}
 }
 
